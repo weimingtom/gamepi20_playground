@@ -1,0 +1,45 @@
+sudo LD_LIBRARY_PATH=/home/wmt/dfb/lib ./df_window 
+
+     =======================|  DirectFB 1.1.1  |=======================
+          (c) 2001-2007  The DirectFB Organization (directfb.org)
+          (c) 2000-2004  Convergence (integrated media) GmbH
+        ------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2023-09-13 20:05) 
+(*) Direct/Thread: Running 'VT Switcher' (CRITICAL, 15324)...
+(*) Direct/Thread: Running 'Keyboard Input' (INPUT, 15325)...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+(*) Direct/Thread: Running 'PS/2 Input' (INPUT, 15326)...
+(*) DirectFB/Input: IMPS/2 Mouse (1) 1.0 (directfb.org)
+(*) Direct/Thread: Running 'PS/2 Input' (INPUT, 15327)...
+(*) DirectFB/Input: IMPS/2 Mouse (2) 1.0 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Surface: Allocated 800x600 32bit RGB32 buffer at offset 0 and pitch 3200.
+(*) FBDev/Mode: (Post)Setting 800x600 RGB32
+(*) FBDev/Mode: Switched to 800x600 (800x600) at 32 bit RGB32 (wanted RGB32).
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Mode: (Post)Setting 800x600 RGB32
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Mode: Testing 800x600 RGB32
+(*) FBDev/Mode: Preparing switch to 800x600 RGB32
+(*) FBDev/Mode: Switched to 800x600 (800x600) at 32 bit RGB32 (wanted RGB32).
+(*) FBDev/Surface: Allocated 800x600 32bit RGB32 buffer at offset 0 and pitch 3200.
+(*) FBDev/Mode: (Post)Setting 800x600 RGB32
+(*) FBDev/Mode: Switched to 800x600 (800x600) at 32 bit RGB32 (wanted RGB32).
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+make: *** [test] Error 42

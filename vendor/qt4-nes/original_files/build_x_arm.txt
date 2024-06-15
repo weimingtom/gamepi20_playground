@@ -1,0 +1,63 @@
+https://blog.csdn.net/u013028556/article/details/123404294
+qpagesetupwidget no member topmargin
+use ubuntu2004 not good
+
+-------------------
+use ubuntu140464_qt, make -j4 about 15min
+
+(x) sudo apt install gcc-arm-linux-gnueabihf
+(x) sudo apt install g++-arm-linux-gnueabihf
+unzip gcc-arm-8.2-2018.08-x86_64-arm-linux-gnueabihf.tar.gz
+(x) tar zf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar
+
+(x) sudo apt install gcc-arm-linux-gnueabi
+(x) sudo apt install g++-arm-linux-gnueabi
+
+(x) arm-linux-gnueabihf-g++
+(x) -xplatform linux-arm-gnueabi-g++
+
+(copy  ./mkspecs/linux-arm-gnueabi-g++ to  ./mkspecs/linux-arm-gnueabihf-g++ and 
+mod this folder/qmake.conf add hf to prefix and absolute gcc path of gcc-arm-8.2-2018.08-x86_64-arm-linux-gnueabihf)
+-march=armv6 -mfpu=vfp -mfloat-abi=hard
+(get these args from pi zero gcc -v a.c)
+
+
+https://blog.csdn.net/baidu_33850454/article/details/79147161
+-std=gnu++98 (not for gcc, only for g++)
+
+
+cp -r ../linux-arm-gnueabihf-g++ ./mkspecs/.
+./configure -debug -static -opensource -embedded generic
+-xplatform linux-arm-gnueabihf-g++
+--prefix=/opt/qt
+-confirm-license
+-nomake demos -nomake examples -nomake docs
+-no-opengl -no-webkit 
+-no-openssl -no-javascript-jit
+
+(x) -little-endian
+
+gedit ./src/3rdparty/javascriptcore/JavaScriptCore/wtf/HashTable.h
+272 ::swap(from, to);
+
+
+
+
+make -j4
+(add -no-openssl)
+
+sudo chown wmt:wmt /opt
+make install
+
+
+cd examples/wigets/digitalclock
+rm Makefile
+/opt/qt/bin/qmake digitalclock.pro
+(add -static to LINK)
+make
+
+
+(x) sudo chown root:root /tmp/qtembedded-0
+(x) sudo ./digitalclock -qws
+
+

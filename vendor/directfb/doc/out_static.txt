@@ -1,0 +1,44 @@
+
+     =======================|  DirectFB 1.1.1  |=======================
+          (c) 2001-2007  The DirectFB Organization (directfb.org)
+          (c) 2000-2004  Convergence (integrated media) GmbH
+        ------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2023-09-13 17:59) 
+(*) Direct/Thread: Running 'VT Switcher' (CRITICAL, 15345)...
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Surface: Allocated 800x600 32bit RGB16 buffer at offset 0 and pitch 3200.
+(*) FBDev/Mode: (Post)Setting 800x600 RGB16
+(*) FBDev/Mode: Switched to 800x600 (2048x2048) at 32 bit RGB32 (wanted RGB16).
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Mode: (Post)Setting 800x600 RGB16
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Mode: Testing 800x600 RGB16
+(*) FBDev/Mode: Preparing switch to 800x600 RGB16
+(*) FBDev/Mode: Switched to 800x600 (2048x2048) at 32 bit RGB32 (wanted RGB16).
+(*) FBDev/Surface: Allocated 2048x2048 32bit RGB16 buffer at offset 0 and pitch 3200.
+(*) FBDev/Mode: (Post)Setting 800x600 RGB16
+(*) FBDev/Mode: Switched to 800x600 (2048x2048) at 32 bit RGB32 (wanted RGB16).
+(*) Direct/Interface: Using 'FT2' implementation of 'IDirectFBFont'.
+(*) Direct/Interface: Using 'PNG' implementation of 'IDirectFBImageProvider'.
+(!) [15343:    0.000] --> Caught signal 2 (sent by the kernel) <--
+ (!!!)  *** WARNING [still objects in 'Layer Region Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+ (!!!)  *** WARNING [still objects in 'Layer Context Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+ (!!!)  *** WARNING [setting window->stack = NULL] *** [default.c:2893 in wm_close_stack()]
+ (!!!)  *** WARNING [setting window->stack = NULL] *** [default.c:2893 in wm_close_stack()]
+ (!!!)  *** WARNING [still objects in 'Window Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]

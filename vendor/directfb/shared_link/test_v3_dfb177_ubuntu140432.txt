@@ -1,0 +1,25 @@
+./configure --prefix=/home/wmt/dfb --disable-x11 --with-inputdrivers=keyboard,ps2mouse
+
+修改DirectFB-1.7.7/src/misc/conf.c，把504行x11去掉，改成
+dfb_config->system=D_STRDUP("fbdev")
+
+
+------------------
+https://www.coder.work/article/5128021
+
+linux - Directfb 未实现错误
+标签 linux framebuffer directfb
+
+我成功编译了 Directfb，现在当我运行 Directfb 的任何示例或任何应用程序时，我收到此错误:
+
+(!!!)  *** UNIMPLEMENTED [fusion_dispatch] *** [fusion.c:3937]
+有什么想法吗？
+
+最佳答案
+
+我解决了这个问题:
+
+以 root 身份登录。
+运行应用程序时使用--dfb:system=FBDev。 例如 ./myapplication --dfb:system=FBDev
+关于linux - Directfb 未实现错误，我们在Stack Overflow上找到一个类似的问题： https://stackoverflow.com/questions/28827766/
+

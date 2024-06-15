@@ -1,0 +1,17 @@
+ubuntu140432
+
+sudo apt install libpng12-dev
+sudo apt install libjpeg62-dev
+sudo apt install libfreetype6-dev
+//linuxiput, serialmouse
+./configure --prefix=/home/wmt/dfb --disable-x11 --with-inputdrivers=keyboard,ps2mouse
+
+如果没有jpeg和png支持，很多例子跑不了
+
+/dev/psaux
+
+
+-------
+
+我在虚拟机+ubuntu14下成功跑通了一个directfb的例子程序，dfb版本为1.1.1，效果如下。诀窍是：（1）把grub cmdline设置成text vga=0x315，使能/dev/fb0（2）在编译directfb时要关闭所有输入驱动（--with-inputdrivers），仅保留需要用到的键盘鼠标驱动，否则主设备很可能会选择错误导致鼠标无法工作（需要确保存在/dev/psaux设备，并且设置成主输入设备）
+

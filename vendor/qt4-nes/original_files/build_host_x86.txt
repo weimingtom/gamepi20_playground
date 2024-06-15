@@ -1,0 +1,57 @@
+ubuntu140432_fb
+
+./configure -shared -static -opensource -embedded generic
+--prefix=/home/wmt/qt
+-confirm-license
+-nomake demos -nomake examples -nomake docs
+-no-opengl -no-webkit
+
+cd examples/wigets/digitalclock
+rm Makefile
+/home/wmt/qt/bin/qmake digitalclock.pro
+make
+sudo chown root:root /tmp/qtembedded-0
+sudo ./digitalclock -qws
+
+
+5. 基于Qt
+
+下载在
+
+ftp://ftp.qt.nokia.com/qt/source/
+
+一般需要自己编译
+
+$ tar xzf qt-everywhere-opensource-src-4.8.0-tp.tar.gz
+
+$ cd qt-everywhere-opensource-src-4.8.0-tp/
+
+$ ./configure -shared -static -opensource -embedded generic
+
+虽然-embedded这个参数没有出现在./configure --help里，
+
+但它在这里是有效的。这里不需要添加--prefix参数
+
+$ sudo make -j 4
+
+$ sudo make install
+
+默认装在/usr/local/Trolltech目录下。
+
+示例代码和编译的二进制文件在demos/embedded目录下。
+
+进入framebuffer下的文本模式，
+
+然后运行sudo ./xxx -qws
+
+运行时如果提示：
+
+Qt/Embedded data directory is not owned by user 0:/tmp/qtembedded-0
+
+可以运行：
+
+sudo chown root:root /tmp/qtembedded-0
+
+如果要在qemu上跑，需要复制/lib/fonts目录下的字体
+
+（可以在Ubuntu上跑，在qemu上跑似乎有点问题——未解决）
