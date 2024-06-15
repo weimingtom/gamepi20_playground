@@ -1,0 +1,3 @@
+need install /usr/local/bin/gpio
+using WiringPi-master.zip/build.sh to install
+

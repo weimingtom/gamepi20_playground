@@ -1,0 +1,10 @@
+qt-everywhere-opensource-src-4.8.6.tar.gz
+
+
+$ cd qt-everywhere-opensource-src-4.8.6
+$ cp ../build.sh  .
+$ cp -r ../linux-arm-gnueabihf-g++ mkspecs/.
+$ rm -rf /opt/qt
+$ sudo chown -R wmt:wmt /opt/qt
+$ make -j4
+

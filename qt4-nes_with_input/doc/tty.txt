@@ -1,0 +1,126 @@
+http://www.noobyard.com/article/p-nezkvnph-y.html
+
+【Linux开发】【Qt开发】Qt界面键盘、触摸屏、鼠标的响应设置
+时间  2019-11-13
+标签 Linux开发 Qt开发 qt 界面 键盘 触摸屏 鼠标 响应 设置 栏目 Linux 繁體版
+原文   https://www.cnblogs.com/huty/p/8518284.html
+
+USB键盘
+通过一番搜索，发现对Qt键盘的支持主要关系到两个方面：php
+
+一、 键盘类型肯定：
+      4.7之前的Qt版本，若是是PS2圆孔键盘，Qt编译时需加上选项：-qt-kbd-vr41xx（未测试）；若是是USB键盘，需加上-qt-kbd-usb选项。
+ Qt4.7.3默认的是tty，对于USB键盘可用，不须要配置。
+  二、环境变量设置：
+      而后移植到目标板上，还须要设置环境变量QWS_KEYBOARD：css
+
+         $export QWS_KEYBOARD="USB:/dev/input/event0"html
+
+     对于qt鼠标键盘移植问题，仍是有点纳闷。
+linux
+
+       $export set QWS_KEYBOARD="TTY:/dev/tty1"
+ 根据不一样的开发板，这个彷佛不一样。个人：
+       $export set QWS_KEYBOARD="TTY:/dev/input/event4"
+qt的程序有键盘输入值，可是是不少不规则的字符集，不知道为何。
+       $./qt -qws 
+Could not initialize virtual console switching.vim
+
+ 
+
+     问题解决了：测试
+
+     不要使用QWS_KEYBOARD,这个设置适合本身作按键；使用QWS_USB_KEYBOARD,这个是支持USB标准键盘的。spa
+
+            $export QWS_USB_KEYBOARD=/dev/input/event4.net
+
+ 三、说明：
+     提示：能够用 $cat /dev/input/event 拔插USB键盘，查看哪一个是你的键盘设备节点。有两个设备节点，能够用nuxt
+
+            $cat /dev/input/event4 或$cat  /dev/input/event5 回车，再按键盘，看终端是否有字符输出，能够肯定可用的设备节点。htm
+
+     推荐帖子：
+
+     http://www.qtcn.org/bbs/simple/?t47670.html
+
+
+2、USBS鼠标：
+
+看大网上的同志用：
+TSLIB_QWS_MOUSE_PROTO="TPanel:/dev/event0 USB:/dev/mouse0
+双飞燕:
+TSLIB_QWS_MOUSE_PROTO="TSLIB:/dev/event0 Itellimouse:/dev/mouse0
+TSLIB_QWS_MOUSE_PROTO="TSLIB:/dev/event0 MouseMap:/dev/mouse0
+一、环境变量设置：
+1.1 微软鼠标（USB无线）
+不一样的鼠标环境变量设置可能不同。个人是Microsoft的：
+TSLIB_QWS_MOUSE_PROTO="Microsoft:/dev/input/event6 TSLIB:/dev/input/touchsreen0"
+
+     $export TSLIB_QWS_MOUSE_PROTO=" linuxtp :/dev/input/event6 TSLIB:/dev/input/touchsreen0"
+这样设置，打开Qt程序，开始可见的鼠标箭头，在鼠标点击后消失了。
+
+     $export TSLIB_QWS_MOUSE_PROTO=" MouseMan :/dev/input/event6 TSLIB:/dev/input/touchsreen0"
+这样设置，打开Qt程序，开始可见的鼠标箭头，鼠标能移动一下下。
+     $./qt -qws
+hidraw: pid 1884 passed too short report
+hidraw: pid 1884 passed too short report
+hidraw: pid 1884 passed too short report
+hidraw: pid 1884 passed too short report
+hidraw: pid 1884 passed too short report
+hidraw: pid 1884 passed too short report
+hidraw: pid 1884 passed too short report
+
+
+1.2 雷柏鼠标（USB无线）
+我用雷柏的USB无线鼠标：
+     $export QWS_MOUSE_PROTO="linuxtp:/dev/hidraw3 TSLIB:/dev/input/touchsreen0"
+鼠标可以必定，可是移动很絮乱。没法点击想选中的目标。
+
+
+解决了鼠标不可用的问题，我还将来得及研究，先写着。
+1.3 最新进展，鼠标可用
+配置内核，从新编译内核：
+#vim arm/arch/omap3_stalker_defconfig
+CONFIG_INPUT_MOUSEDEV=y 
+CONFIG_INPUT_MOUSE=y 
+
+不用配置QWS_MOUSE_PROTO,配置过的
+
+#export QWS_MOUSE_PROTO=""
+
+这样鼠标触摸屏均可以用了，鼠标很正常，触摸能够用，可是处处乱跳。
+
+下面三个配置参数没有找到，我也没配置，也能够用的。
+CONFIG_INPUT_MOUSEDEV_PSAUX=y 
+CONFIG_INPUT_MOUSEDEV_SCREEN_X=1024 
+CONFIG_INPUT_MOUSEDEV_SCREEN_Y=768 
+1.4 鼠标、触摸屏同时使用
+export QWS_MOUSE_PROTO="tslib:/dev/input/touchscreen0 mouseman:/dev/input/mice"
+三、说明：
+帖子推荐：
+http://www.linuxforum.net/forum/showflat.php?Cat=&Board=TI&Number=728763&view=&sb=&o=&vc=1 
+上条验证有用。
+
+http://topic.csdn.net/u/20120722/17/222d09dd-a46f-4748-b936-61dbed26729d.html?seed=1054718373&r=79200954#r_79200954
+
+http://blog.21ic.com/user1/2177/archives/2006/32818.html
+
+=====================================
+SNO:
+ /usr/etc/ts.conf中的配置。 今天主要是完成tslib在mini210开发板上的移植，传统的移植方法在这个上面根本行不通，不得不说，不知内幕，你永远都不会懂，一个黑匣子会难死多少脑细胞啊，在还好咱们有陈sir，呵呵，下面写一下主要的过程和重点： 首先是ts.conf,module_raw input修改为module_raw friendlyarm-ts-input，其他相同 。其次是friendlyarm-ts-input.so，在友善之臂自带的文件系统中/usr/lib/ts目录下，能够把整个ts目录拷贝取代编译tslib造成lib/ts目录。而后是拷贝相应的libts-1.0.so.0到本身作的文件系统/lib下，最后是配置环境变量在/etc/profile中加入 export T_ROOT=/opt/tslib export LD_LIBRARY_PATH=$T_ROOT/lib //指定tslib库文件路径 //export TSLIB_CONSOLEDEVICE=none //tslib运行须要的控制台，这里就是LCD屏幕 ,设定控制台设备为none，不然默认为/dev/tty, export TSLIB_FBDEVICE=/dev/fb0 //指定帧缓冲设备  export TSLIB_CONFFILE=$TSLIB_ROOT/etc/ts.conf export TSLIB_PLUGINDIR=$TSLIB_ROOT/lib/ts export TSLIB_TSDEVICE=/dev/touchscreen-1wire //指定触摸屏设备节点文件 export TSLIB_CALIBFILE=/etc/pointercal //指定触摸屏校准文件pintercal的存放位置export QWS_MOUSE_PROTO=tslib:/dev/touchscreen-1wire 执行ts_calibrate校验程序。
+
+相关文章
+1. Qt移植对USB鼠标键盘、触摸屏的支持
+2. qt 鼠标响应
+3. Qt界面开发(三)
+4. HTML5触屏界面设计与开发
+5. Mac按键/触摸板开机界面无响应
+6. QT 触摸屏 驱动
+7. Qt 界面隐藏鼠标
+8. 自学QT之QML实现响应鼠标和键盘事件
+9. 电脑触摸屏上的鼠标事件触发
+10. JavaFX桌面应用开发-鼠标事件和键盘事件
+更多相关文章...
+相关标签/搜索
+Qt开发 QT - QT开发笔记 qt ARM-Linux开发 Linux开发 设计开发 开发 触摸屏幕 触摸屏 Qt 5.9 C++开发指南 Linux
+

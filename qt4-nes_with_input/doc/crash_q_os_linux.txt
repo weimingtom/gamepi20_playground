@@ -1,0 +1,8 @@
+https://doc.qt.io/qt-5/qtglobal.html
+
+Q_OS_LINUX
+
+小志掌机研究。我测试过我自己写的Qt版GamePi20按键输入代码，结果失败了，似乎在wiringPiSetup()处跑飞了（我通过ulimit -c unlimited设置可以产生core转储文件，然后sudo gdb ./Qt_local ./core查看backtrace）。原因不明，有可能是我剪裁的wiringpi有bug，也可能root权限的原因，有可能是我放在Qt线程中跑导致的。反正这个问题可能要测试比较长时间，这个问题要慢慢研究
+
+#include <QtGlobal> //Q_OS_LINUX
+

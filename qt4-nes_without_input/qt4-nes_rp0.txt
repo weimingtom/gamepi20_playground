@@ -1,0 +1,11 @@
+$ nano NesEmulateWindow.cpp
+./hdl.nes
+$ cd Qt
+$ /opt/qt/bin/qmake Qt.pro
+$ make clean all
+$ cp Qt Qt_local
+$ nano NesEmulateWindow.cpp
+/home/pi/hdl.nes
+$ make clean all
+$ cp Qt Qt_boot
+

@@ -1,0 +1,14 @@
+$ ps aux | grep lvgl_demo
+$ sudo kill -KILL 355
+
+$ ls /dev/sd*
+$ sudo mount /dev/sda1 /mnt/udisk/
+$ cp /mnt/udisk/digitalclock .
+$ cp /mnt/udisk/qt.tar.gz .
+$ chmod +x digitalclock
+
+$ sudo chown -R root:pi /tmp/qtembedded-0
+
+$ sudo ./digitalclock -qws
+
+$ sudo QWS_DISPLAY=:/dev/fb1 ./digitalclock -qws
