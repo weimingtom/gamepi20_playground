@@ -1,5 +1,5 @@
 # gamepi20_playground
-My GamePi20 playground
+[WIP] My GamePi20 playground
 
 ## firmware  
 * 2018-04-18-raspbian-stretch-lite  
@@ -9,4 +9,9 @@ My GamePi20 playground
 * sudo mkdir /mnt/udisk  
 * sudo mount /dev/sda1 /mnt/udisk  
 
-## 
+## qt4-nes_without_input  
+
+## qt4-nes_with_input  
+
+## TODO
+* (done ???)  
